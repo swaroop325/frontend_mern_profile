@@ -12,7 +12,7 @@ import BgImg from "../images/bg.jpg";
 import WOW from "wowjs";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const classes = useStyles();
 
   React.useEffect(() => {
@@ -26,7 +26,7 @@ export default function Login() {
       <Container maxWidth={false}>
         <Paper elevation={3} className={classes.paper + " wow flip"}>
           <Box component="span" className={classes.loginHeader}>
-            <span className={classes.loginText}>Login</span>
+            <span className={classes.loginText}>Register</span>
           </Box>
           <Box>
             <FormControl>
@@ -34,7 +34,7 @@ export default function Login() {
               <Input id="component-simple" value={""} onChange={handleChange} />
             </FormControl>
           </Box>
-          <Link to="/register">Register</Link>
+          <Link to="/">Login</Link>
         </Paper>
       </Container>
     </div>
@@ -53,12 +53,6 @@ const useStyles = makeStyles(() => ({
     height: "70vh",
     borderRadius: "5%",
     textAlign: "center",
-    "@media (max-width:640px)": {
-      width: "90vw",
-    },
-    "@media (min-device-width: 768px) and (max-device-width: 800px)": {
-      width: "90vw",
-    },
   },
   loginHeader: {
     marginTop: "40px",
