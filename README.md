@@ -1,19 +1,25 @@
 # Frontend module of MERN App
+Frontend module designed by neomorphic design principle 
 
+## Tech details:
 
-### [LIVE DEMO ➫](http://undefined/)
+Hosted in firebase
+Deployed using firebase deploy
+
+Other details below:
+### [LIVE DEMO ➫](https://mern-frontend-ce9a8.web.app)
 
 ### Project Structure
-.  
+
 	├── build	# Build files 
 	|
 	├── public	            # Static files
     |   
-	|
-    └── src		            # Main Source Code
-	    ├── api 	        # Api details
-	    └── components      # components
-
+    └── src		           			 # Main Source Code
+	    ├── api 	        		 # Api details
+		├── images 	       			 # image assets
+		├── reusableComponents 	     # resusable components
+	    └── components      		 # components
 
 ## React Version
 17
@@ -31,4 +37,6 @@ npm dependancies
 - [react-router-dom]
 - [react-router-dom] 
 - [wow.js]
+- [formik]
+- [react-loader-spinner]
  
