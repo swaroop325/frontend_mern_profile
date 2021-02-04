@@ -4,9 +4,11 @@ Frontend module designed by neomorphic design principle
 ## Tech details:
 
 Hosted in firebase
-Deployed using firebase deploy
 
-Other details below:
+```
+npm run build
+firebase deploy
+```
 ### [LIVE DEMO ➫](https://mern-frontend-ce9a8.web.app)
 
 ### Project Structure
