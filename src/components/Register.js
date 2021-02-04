@@ -24,18 +24,35 @@ export default function Register() {
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
-        <Paper elevation={3} className={classes.paper + " wow flip"}>
-          <Box component="span" className={classes.loginHeader}>
-            <span className={classes.loginText}>Register</span>
-          </Box>
-          <Box>
-            <FormControl>
-              <InputLabel htmlFor="component-simple">Name</InputLabel>
-              <Input id="component-simple" value={""} onChange={handleChange} />
-            </FormControl>
-          </Box>
-          <Link to="/">Login</Link>
-        </Paper>
+        <div className={classes.paper + " form wow flip"}>
+          <h1>Sign Up</h1>
+          <div className="form__input--container">
+            <input type="text" placeholder="Name" className="form__input" />
+          </div>
+          <div className="form__input--container">
+            <input type="text" placeholder="Email" className="form__input" />
+          </div>
+          <div className="form__input--container">
+            <input
+              type="password"
+              placeholder="Password"
+              className="form__input"
+            />
+          </div>
+          <div className="form__input--container">
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              className="form__input"
+            />
+          </div>
+          <button className="form__signin-button">SIGN UP</button>
+          <button className="form__signin-button">
+            <Link to="/" style={{ textDecoration: "none" }}>
+              Login
+            </Link>
+          </button>
+        </div>
       </Container>
     </div>
   );
@@ -49,13 +66,13 @@ const useStyles = makeStyles(() => ({
   paper: {
     float: "left",
     width: "40vw",
-    marginTop: "10vh",
-    height: "70vh",
+    marginTop: "5vh",
+    height: "90vh",
     borderRadius: "5%",
     textAlign: "center",
   },
   loginHeader: {
-    marginTop: "40px",
+    marginTop: "20px",
   },
   loginText: {
     fontSize: "2rem",

@@ -24,18 +24,25 @@ export default function Login() {
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
-        <Paper elevation={3} className={classes.paper + " wow flip"}>
-          <Box component="span" className={classes.loginHeader}>
-            <span className={classes.loginText}>Login</span>
-          </Box>
-          <Box>
-            <FormControl>
-              <InputLabel htmlFor="component-simple">Name</InputLabel>
-              <Input id="component-simple" value={""} onChange={handleChange} />
-            </FormControl>
-          </Box>
-          <Link to="/register">Register</Link>
-        </Paper>
+        <div className={classes.paper + " form wow flip"}>
+          <h1>Sign In</h1>
+          <div className="form__input--container">
+            <input type="text" placeholder="Email" className="form__input" />
+          </div>
+          <div className="form__input--container">
+            <input
+              type="password"
+              placeholder="Password"
+              className="form__input"
+            />
+          </div>
+          <button className="form__signin-button">LOG IN</button>
+          <button className="form__signin-button">
+            <Link to="/register" style={{ textDecoration: "none" }}>
+              Register
+            </Link>
+          </button>
+        </div>
       </Container>
     </div>
   );
