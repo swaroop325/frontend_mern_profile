@@ -8,7 +8,7 @@ import {
   Input,
   FormControl,
 } from "@material-ui/core";
-import BgImg from "../images/bg.jpg";
+import ProfileBgImg from "../images/profileBg.jpg";
 import WOW from "wowjs";
 import { Link } from "react-router-dom";
 
@@ -24,8 +24,8 @@ export default function Register() {
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
-        <div className={classes.paper + " form wow flip"}>
-          <h1>Sign Up</h1>
+        <div className={classes.paper + " form wow wobble"}>
+          <h1>Profile</h1>
           <div className="form__input--container">
             <input type="text" placeholder="Name" className="form__input" />
           </div>
@@ -46,11 +46,10 @@ export default function Register() {
               className="form__input"
             />
           </div>
-          <button className="form__signin-button">SIGN UP</button>
-          <div>Already have an account?</div>
+          <button className="form__signin-button">Edit</button>
           <button className="form__signin-button">
             <Link to="/" style={{ textDecoration: "none" }}>
-              Login
+              Logout
             </Link>
           </button>
         </div>
@@ -61,7 +60,7 @@ export default function Register() {
 const useStyles = makeStyles(() => ({
   body: {
     height: "100vh",
-    background: `url(${BgImg}) no-repeat`,
+    background: `url(${ProfileBgImg}) no-repeat`,
     backgroundSize: "cover",
   },
   paper: {
@@ -72,11 +71,11 @@ const useStyles = makeStyles(() => ({
     borderRadius: "5%",
     textAlign: "center",
     "@media (max-width:640px)": {
-      width: "90vw",
-    },
-    "@media (min-device-width: 768px) and (max-device-width: 800px)": {
-      width: "90vw",
-    },
+        width: "90vw",
+      },
+      "@media (min-device-width: 768px) and (max-device-width: 800px)": {
+        width: "90vw",
+      },
   },
   loginHeader: {
     marginTop: "20px",

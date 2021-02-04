@@ -20,7 +20,10 @@ export default function Login() {
     wow.init();
   }, []);
 
-  const handleChange = () => {};
+  const logIn = () => {
+    window.location.href = "/profile";
+  };
+
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
@@ -36,7 +39,10 @@ export default function Login() {
               className="form__input"
             />
           </div>
-          <button className="form__signin-button">LOG IN</button>
+          <button onClick={logIn} className="form__signin-button">
+            Login
+          </button>
+          <div>Don't have an account?</div>
           <button className="form__signin-button">
             <Link to="/register" style={{ textDecoration: "none" }}>
               Register
