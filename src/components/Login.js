@@ -113,12 +113,13 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     background: `url(${BgImg}) no-repeat`,
     backgroundSize: "cover",
+    overflow: "auto",
   },
   paper: {
     float: "left",
     width: "40vw",
     marginTop: "10vh",
-    height: "70vh",
+    height: "max-content",
     borderRadius: "5%",
     textAlign: "center",
     "@media (max-width:640px)": {

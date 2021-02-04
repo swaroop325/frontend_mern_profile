@@ -23,7 +23,7 @@ export default function Register() {
   const logout = () => {
     window.location.href = "/";
   };
-  
+
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
@@ -63,12 +63,13 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     background: `url(${ProfileBgImg}) no-repeat`,
     backgroundSize: "cover",
+    overflow: "auto",
   },
   paper: {
     float: "left",
     width: "40vw",
     marginTop: "5vh",
-    height: "90vh",
+    height: "max-content",
     borderRadius: "5%",
     textAlign: "center",
     "@media (max-width:640px)": {
