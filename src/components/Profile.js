@@ -20,11 +20,14 @@ export default function Register() {
     wow.init();
   }, []);
 
-  const handleChange = () => {};
+  const logout = () => {
+    window.location.href = "/";
+  };
+  
   return (
     <div className={classes.body}>
       <Container maxWidth={false}>
-        <div className={classes.paper + " form wow wobble"}>
+        <div className={classes.paper + " form wow rubberBand"}>
           <h1>Profile</h1>
           <div className="form__input--container">
             <input type="text" placeholder="Name" className="form__input" />
@@ -47,10 +50,8 @@ export default function Register() {
             />
           </div>
           <button className="form__signin-button">Edit</button>
-          <button className="form__signin-button">
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Logout
-            </Link>
+          <button className="form__signin-button" onClick={logout}>
+            Logout
           </button>
         </div>
       </Container>
@@ -71,11 +72,11 @@ const useStyles = makeStyles(() => ({
     borderRadius: "5%",
     textAlign: "center",
     "@media (max-width:640px)": {
-        width: "90vw",
-      },
-      "@media (min-device-width: 768px) and (max-device-width: 800px)": {
-        width: "90vw",
-      },
+      width: "90vw",
+    },
+    "@media (min-device-width: 768px) and (max-device-width: 800px)": {
+      width: "90vw",
+    },
   },
   loginHeader: {
     marginTop: "20px",

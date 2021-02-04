@@ -11,6 +11,8 @@ import {
 import BgImg from "../images/bg.jpg";
 import WOW from "wowjs";
 import { Link } from "react-router-dom";
+import { Formik } from "formik";
+import { Loader } from "../resusableComponents";
 
 export default function Login() {
   const classes = useStyles();
@@ -20,8 +22,8 @@ export default function Login() {
     wow.init();
   }, []);
 
-  const logIn = () => {
-    window.location.href = "/profile";
+  const registerAccount = () => {
+    window.location.href = "/register";
   };
 
   return (
@@ -29,24 +31,77 @@ export default function Login() {
       <Container maxWidth={false}>
         <div className={classes.paper + " form wow flip"}>
           <h1>Sign In</h1>
-          <div className="form__input--container">
-            <input type="text" placeholder="Email" className="form__input" />
-          </div>
-          <div className="form__input--container">
-            <input
-              type="password"
-              placeholder="Password"
-              className="form__input"
-            />
-          </div>
-          <button onClick={logIn} className="form__signin-button">
-            Login
-          </button>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.email) {
+                errors.email = "Required";
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = "Invalid email address";
+              }
+              if (!values.password) {
+                errors.password = "Required";
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+                window.location.href = "/profile";
+              }, 400);
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+              /* and other goodies */
+            }) => (
+              <div>
+                <Loader disabled={!isSubmitting}></Loader>
+                <div className="form__input--container">
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="Email"
+                    className="form__input"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <div className={classes.errors}>
+                    {errors.email && touched.email && errors.email}
+                  </div>
+                </div>
+                <div className="form__input--container">
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    className="form__input"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <div className={classes.errors}>
+                    {errors.password && touched.password && errors.password}
+                  </div>
+                </div>
+                <button onClick={handleSubmit} className="form__signin-button">
+                  Login
+                </button>
+              </div>
+            )}
+          </Formik>
           <div>Don't have an account?</div>
-          <button className="form__signin-button">
-            <Link to="/register" style={{ textDecoration: "none" }}>
-              Register
-            </Link>
+          <button onClick={registerAccount} className="form__signin-button">
+            Register
           </button>
         </div>
       </Container>
@@ -78,5 +133,9 @@ const useStyles = makeStyles(() => ({
   },
   loginText: {
     fontSize: "2rem",
+  },
+  errors: {
+    marginTop: "5px",
+    color: "red",
   },
 }));
