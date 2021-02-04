@@ -5,13 +5,18 @@ import WOW from "wowjs";
 
 export default function Register() {
   const classes = useStyles();
-
+  const [user, setUser] = React.useState(null);
+  
   React.useEffect(() => {
     const wow = new WOW.WOW();
     wow.init();
+    let userDetails = JSON.parse(localStorage.getItem("user_detail"));
+    setUser(userDetails);
   }, []);
 
   const logout = () => {
+    localStorage.removeItem("user_detail");
+    localStorage.removeItem("token");
     window.location.href = "/";
   };
 
@@ -21,26 +26,24 @@ export default function Register() {
         <div className={classes.paper + " form wow rubberBand"}>
           <h1>Profile</h1>
           <div className="form__input--container">
-            <input type="text" placeholder="Name" className="form__input" />
-          </div>
-          <div className="form__input--container">
-            <input type="text" placeholder="Email" className="form__input" />
-          </div>
-          <div className="form__input--container">
             <input
-              type="password"
-              placeholder="Password"
+              type="text"
+              placeholder="Name"
+              disabled
+              value={user?.name}
               className="form__input"
             />
           </div>
           <div className="form__input--container">
             <input
-              type="password"
-              placeholder="Confirm Password"
+              type="text"
+              placeholder="Email"
+              disabled
+              value={user?.email}
               className="form__input"
             />
           </div>
-          <button className="form__signin-button">Edit</button>
+
           <button className="form__signin-button" onClick={logout}>
             Logout
           </button>

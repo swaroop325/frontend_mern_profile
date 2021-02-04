@@ -4,6 +4,8 @@ import BgImg from "../images/bg.jpg";
 import WOW from "wowjs";
 import { Formik } from "formik";
 import { Loader } from "../resusableComponents";
+import { login } from "../api";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const classes = useStyles();
@@ -39,11 +41,20 @@ export default function Login() {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+              login(values).then((data) => {
+                if (data?.token) {
+                  Swal.fire("Logged in successfully");
+                  localStorage.setItem(
+                    "user_detail",
+                    JSON.stringify(data?.user)
+                  );
+                  localStorage.setItem("token", JSON.stringify(data?.token));
+                  window.location.href = "/profile";
+                } else {
+                  Swal.fire(data?.message || "login failed !! try again");
+                }
                 setSubmitting(false);
-                window.location.href = "/profile";
-              }, 400);
+              });
             }}
           >
             {({

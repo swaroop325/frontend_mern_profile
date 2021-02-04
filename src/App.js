@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import { Login, Register, Profile } from "./components";
 
@@ -6,9 +11,39 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/profile" component={Profile} />
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return localStorage.getItem("token") ? (
+              <Redirect to="/profile" />
+            ) : (
+              <Login />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/register"
+          render={() => {
+            return localStorage.getItem("token") ? (
+              <Redirect to="/profile" />
+            ) : (
+              <Register />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={() => {
+            return localStorage.getItem("token") ? (
+              <Profile />
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        />
       </Switch>
     </Router>
   );

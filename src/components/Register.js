@@ -4,6 +4,8 @@ import BgImg from "../images/bg.jpg";
 import WOW from "wowjs";
 import { Formik } from "formik";
 import { Loader } from "../resusableComponents";
+import { register } from "../api";
+import Swal from "sweetalert2";
 
 export default function Register() {
   const classes = useStyles();
@@ -38,6 +40,9 @@ export default function Register() {
               if (!values.password) {
                 errors.password = "Required";
               }
+              if (values.password.length < 6) {
+                errors.password = "Password should be minimum 6 characters";
+              }
               if (!values.cnf_password) {
                 errors.cnf_password = "Required";
               }
@@ -48,10 +53,15 @@ export default function Register() {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+              register(values).then((data) => {
+                if (data?.success) {
+                  Swal.fire(data?.message);
+                  window.location.href = "/";
+                } else {
+                  Swal.fire(data?.message || "registration failed");
+                }
                 setSubmitting(false);
-              }, 400);
+              });
             }}
           >
             {({
@@ -120,7 +130,9 @@ export default function Register() {
                       errors.cnf_password}
                   </div>
                 </div>
-                <button className="form__signin-button">SIGN UP</button>
+                <button onClick={handleSubmit} className="form__signin-button">
+                  SIGN UP
+                </button>
               </div>
             )}
           </Formik>
