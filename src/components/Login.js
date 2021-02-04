@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  makeStyles,
-  Paper,
-  InputLabel,
-  Input,
-  FormControl,
-} from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import BgImg from "../images/bg.jpg";
 import WOW from "wowjs";
-import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import { Loader } from "../resusableComponents";
 

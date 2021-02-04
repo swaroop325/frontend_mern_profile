@@ -1,16 +1,7 @@
 import React from "react";
-import {
-  Box,
-  Container,
-  makeStyles,
-  Paper,
-  InputLabel,
-  Input,
-  FormControl,
-} from "@material-ui/core";
+import { Container, makeStyles } from "@material-ui/core";
 import ProfileBgImg from "../images/profileBg.jpg";
 import WOW from "wowjs";
-import { Link } from "react-router-dom";
 
 export default function Register() {
   const classes = useStyles();
