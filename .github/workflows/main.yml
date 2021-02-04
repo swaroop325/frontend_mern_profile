@@ -1,0 +1,52 @@
+name: mern_frontend_profile deployment
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  remove-old-artifacts:
+    name: Cleaning old artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove old artifacts
+        uses: c-hive/gha-remove-artifacts@v1
+        with:
+          age: "1 day"
+  build:
+    name: CI/CD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.0"
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: CI=false npm run build
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: build
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: build
+          path: build
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

@@ -5,6 +5,7 @@ Frontend module designed by neomorphic design principle
 ## Tech details:
 
 Hosted in firebase
+(Automatic deployment enabled using github workflow)
 
 ```
 npm run build
@@ -27,7 +28,9 @@ firebase deploy
 
 ## React Version
 
+```
 17
+```
 
 ### Dependencies:
 
